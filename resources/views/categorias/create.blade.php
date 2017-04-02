@@ -8,25 +8,23 @@
           <h4 class="modal-title" id="myModalLabel">AREA REGISTRATION</h4>
       </div>
       <div class="modal-body" >
-          <div class="row">
-            <form method="POST" action="/categorias/create"> 
-              <div class="col-md-12" >
-                <div class="well">
-					{{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="descricao" class="control-label">Nome da Categoria:</label>
-                        <input type="text" class="form-control" id="descricao" name="descricao">
-                     </div>  
-					              
-                </div>
+        <div class="row">
+          <form method="POST" action="/categorias/create"> 
+            <div class="col-md-12" >
+              <div class="well">
+      	       {{ csrf_field() }}
+                  <div class="form-group">
+                      <label for="descricao" class="control-label">Nome da Categoria:</label>
+                      <input type="text" class="form-control" id="descricao" name="descricao">
+                   </div>           
+              </div>
             </div>
             <div class="form-group" style="clear: both; max-width: 95%; margin: 0px auto;">
               @include('layouts/errors')
               <button type="submit" class="btn btn-success btn-block">Cadastrar!</button>
             </div>
-</form>
-
-          </div>
+          </form>
+        </div>
       </div>
   </div>
 </div>

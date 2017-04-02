@@ -16,7 +16,7 @@ class Livros extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'imagem','area', 'sinopse','anoPublicacao'
+        'titulo', 'image','area', 'sinopse','anopublicacao'
     ];
 
     public function autores()

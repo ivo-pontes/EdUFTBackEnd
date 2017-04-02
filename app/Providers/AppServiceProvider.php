@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Estados as Estados;
+use App\Models\Areas as Areas;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('registration/create', function($view){
             $view->with('estados', Estados::all());
+        });
+
+        view()->composer('livros/create', function($view){
+            $view->with('areas', Areas::all());
         });
     }
 

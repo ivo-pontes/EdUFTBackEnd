@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Livros;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\LivrosInterface as LivrosInterface;
+use Illuminate\Support\Facades\Storage as Storage;
 
 class LivrosController extends Controller
 {
@@ -30,17 +31,29 @@ class LivrosController extends Controller
         return view('livros/create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         //Validar
         $this->validate(request(),[
-            'descricao' => 'required'
+            'titulo' => 'required',
+            'sinopse'  => 'required',
+            'anodepublicacao'  => 'date',
+            'area' => 'required'
             ]);
 
-       
-        $livro = $this->livro->persist(request(['descricao']));
-        
-        //dd($livro);
+        $path = Storage::putFile('public/images/'.$request->imageFile->hashName(), $request->file('imageFile'));
+
+        $request->request->add(['image' => $path]);
+
+        $date = new \DateTime($request->anodepublicacao);
+        $date = $date->format('Y-m-d H:i:s');
+        $request->request->add(['anopublicacao' => $date]);
+
+        $livro = $this->livro->persist(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
+    
+        session()->flash('message', "O Livro: ".$request->titulo." foi cadastrado.");
+
+
         
         //Redirecionar
         return redirect()->home();

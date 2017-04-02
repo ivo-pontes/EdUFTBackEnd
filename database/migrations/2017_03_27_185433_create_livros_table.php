@@ -19,7 +19,7 @@ class CreateLivrosTable extends Migration
             $table->string('image');
             $table->integer('area')->unsigned();
             $table->text('sinopse');
-            $table->string('anopublicacao',5);
+            $table->date('anopublicacao');
             $table->integer('produto')->unsigned();
             $table->timestamps();
         });
