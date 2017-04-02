@@ -4,6 +4,7 @@
           <a class="blog-nav-item active" href="/posts">Home</a>
           <a class="blog-nav-item" href="/login">Login</a>
           <a class="blog-nav-item" href="/register">Register</a>
+          <a class="blog-nav-item" href="/autores/create">Registrar Autor</a>
           @if(Auth::check())
             <a class="blog-nav-item" style="float: right;" href="/logout"> Logout</a>
             <a class="blog-nav-item" style="float: right;" href="#"> {{ Auth::user()->name }}</a>

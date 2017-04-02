@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get('/login', 'SessionsController@create');
@@ -38,3 +38,24 @@ Route::post('/register', 'RegistrationController@store');
 Route::get('/estados/{id}', 'EstadosController@show');
 
 Route::get('/municipios/{id}', 'MunicipiosController@show');
+
+Route::get('/livros/create', 'LivrosController@create');
+
+Route::post('/livros/create', 'LivrosController@store');
+
+Route::get('/areas/create', 'AreasController@create');
+
+Route::post('/areas/create', 'AreasController@store');
+
+Route::get('/opinioes/create', 'OpinioesController@create');
+
+Route::post('/opinioes/create', 'OpinioesController@store');
+
+
+Route::get('/categorias/create', 'CategoriasController@create');
+
+Route::post('/categorias/create', 'CategoriasController@store');
+
+Route::get('/autores/create', 'AutoresController@create');
+
+Route::post('/autores/create', 'AutoresController@store');

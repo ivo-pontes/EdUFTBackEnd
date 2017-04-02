@@ -25,5 +25,10 @@ class RepositoriesServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Repositories\Interfaces\UserInterface', 'App\Repositories\UserRepository');
         $this->app->bind('App\Repositories\Interfaces\EstadosInterface', 'App\Repositories\EstadosRepository');
+        $this->app->bind('App\Repositories\Interfaces\AreasInterface', 'App\Repositories\AreasRepository');
+        $this->app->bind('App\Repositories\Interfaces\CategoriasInterface', 'App\Repositories\CategoriasRepository');
+        $this->app->bind('App\Repositories\Interfaces\OpinioesInterface', 'App\Repositories\OpinioesRepository');
+        $this->app->bind('App\Repositories\Interfaces\LivrosInterface', 'App\Repositories\LivrosRepository');
+        $this->app->bind('App\Repositories\Interfaces\AutoresInterface', 'App\Repositories\AutoresRepository');
     }
 }

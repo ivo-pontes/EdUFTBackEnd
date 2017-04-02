@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Livros;
 use Illuminate\Http\Request;
+use App\Repositories\Interfaces\LivrosInterface as LivrosInterface;
 
 class LivrosController extends Controller
 {
+    protected $livro;
+
+    public function __construct(LivrosInterface $livroInterface)
+    {
+        $this->livro = $livroInterface;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,25 +25,25 @@ class LivrosController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('livros/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        //Validar
+        $this->validate(request(),[
+            'descricao' => 'required'
+            ]);
+
+       
+        $livro = $this->livro->persist(request(['descricao']));
+        
+        //dd($livro);
+        
+        //Redirecionar
+        return redirect()->home();
     }
 
     /**

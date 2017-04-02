@@ -1,45 +1,30 @@
 
-function select_estado(val)
+function addDateTypeFirefox()
 {
-	 $.ajax({
-		 type: 'post',
-		 url: 'fetch_data.php',
-		 data: {
-		  get_estadoion:val
-		 },
-		 success: function (response) {
-		  document.getElementById("select_estado").innerHTML=response; 
-		 }
-		 });
+	//Adicionando tipo "DATE" para o firefox(não nativo)
+	webshims.setOptions('forms-ext', {types: 'date'});
+	webshims.polyfill('forms forms-ext');
+	$.webshims.formcfg = {
+	  en: {
+	      dFormat: '-',
+	      dateSigns: '-',
+	      patterns: {
+	          d: "yy-mm-dd"
+	      }
+	  }
+	};
 }
 
+function esmaecer()
+{
+	var flash = document.getElementById('flash-message');
+	flash.style.display = 'none';
+}
 
-$('#estado').on("change", function(){
+function load()
+{
+	setTimeout(esmaecer,3000);
+	addDateTypeFirefox();
+}
 
-  var id = $(this).val();
-
-  $.ajax({
-    type: "GET",
-    url: "http://localhost:8000/estados/" + id,
-    success: function( data ) {
-
-  		var selectM = $('#municipio');                        
-    	selectM.empty(); 
-
-    	var x = 0; var i =0;
-	   	for(d in data)
-	   	{
-	   		//console.log(data[d].length);
-	   			for (i = 0; i < data[d].length; i++) 
-	   			{
-	   				selectM.append('<option value=' + data[d][i].id + '>' + data[d][i].descricao + '</option>');
-	   			}
-	    		
-	   	} 
-    }
-  });
-
- 
-});
-
-
+document.addEventListener("DOMContentLoaded", load, false);

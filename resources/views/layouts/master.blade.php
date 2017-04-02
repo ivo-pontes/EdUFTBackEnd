@@ -17,12 +17,14 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/blog.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
   </head>
 
   <body>
 
     @include('layouts/nav')
+
+    @include('layouts/flash')
 
     <div class="container">
         <div class="row">

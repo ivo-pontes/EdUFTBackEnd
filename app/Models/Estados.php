@@ -8,7 +8,7 @@ class Estados extends Model
 { 
 	protected $primaryKey = 'id';
 
-	protected $fillable = ['id', 'descricao'];
+	protected $fillable = ['id', 'descricao', 'codigo', 'uf'];
 
 	public function municipios()
 	{

@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Repositories\Interfaces\AutoresInterface as AutoresInterface;
 use App\Models\Autores;
 
-class AutoresRepository extends Repository implements Interface
+class AutoresRepository extends Repository implements AutoresInterface
 {
   /**
    * @var Model

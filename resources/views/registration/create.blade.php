@@ -56,13 +56,13 @@
                 <div class="well">
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Sobrenome:</label>
-                        <input type="text" class="form-control" id="name" name="name"  >
+                        <label for="sobrenome" class="control-label">Sobrenome:</label>
+                        <input type="text" class="form-control" id="sobrenome" name="sobrenome"  >
                     </div>
                     <div class="form-group" style="text-align: center;">
-                        <label for="email" class="control-label" style="float: left;">Sexo:</label>
-                         <input type="radio" name="opcao" value="M" style="margin-left: 15px;margin-right: 15px;"> M
-                         <input type="radio" NAME="opcao" value="F" style="margin-left: 15px;margin-right: 15px;"> F 
+                        <label for="sexo" class="control-label" style="float: left;">Sexo:</label>
+                         <input type="radio" name="sexo" value="M" style="margin-left: 15px;margin-right: 15px;"> M
+                         <input type="radio" name="sexo" value="F" style="margin-left: 15px;margin-right: 15px;"> F 
                     </div>
                     <div class="form-group">
                         <label for="endereco" class="control-label">Endereço:</label>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group">
                         <label for="rua" class="control-label">Rua:</label>
-                        <input type="password" class="form-control" id="rua" name="rua">
+                        <input type="text" class="form-control" id="rua" name="rua">
                         
                     </div>
                     <div class="form-group">
@@ -115,20 +115,5 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
 <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
-<script>
-webshims.setOptions('forms-ext', {types: 'date'});
-webshims.polyfill('forms forms-ext');
-$.webshims.formcfg = {
-en: {
-    dFormat: '-',
-    dateSigns: '-',
-    patterns: {
-        d: "yy-mm-dd"
-    }
-}
-};
-
-
-
-</script>
+<script src="js/regioes.js"></script>
 @endsection

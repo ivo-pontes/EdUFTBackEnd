@@ -17,7 +17,7 @@ class CreateAutoresTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('sobrenome');
-            $table->text('descericao');
+            $table->text('descricao');
             $table->timestamps();
         });
     }

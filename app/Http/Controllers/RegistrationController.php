@@ -25,14 +25,20 @@ class RegistrationController extends Controller
     	$this->validate(request(),[
     		'name' => 'required',
     		'email' => 'required|email',
-    		'password' => 'required|confirmed'
+    		'password' => 'required|confirmed',
+            'sobrenome' => 'required',
+            'cpf' => 'required',
+            'datanasc' => 'required',
     		]);
 
        
+       //dd($_POST);
+
     	//Criar usuário
     	//$user = User::create(request(['name', 'email', 'password']));
 
-        $user = $this->user->persist(request(['name', 'email', 'password']));
+        $user = $this->user->persist(request(['name', 'email', 'password', 'cep', 'cpf', 'datanasc','sexo','sobrenome',
+                'estado', 'municipio', 'rua', 'numero', 'bairro']));
     	//Logar usuário
     	auth()->login($user);
 
