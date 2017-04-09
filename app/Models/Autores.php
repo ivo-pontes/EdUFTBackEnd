@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Autores extends Model
 {
     use Notifiable;
-
+    protected $primaryKey = 'id';
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -18,10 +19,11 @@ class Autores extends Model
         'nome', 'sobrenome', 'descricao'
     ];
 
+    
 
     public function livros()
     {
-    	return $this->belongsToMany(Livros::class);
+    	return $this->belongsToMany('App\Models\Livros');
     }
 
 }

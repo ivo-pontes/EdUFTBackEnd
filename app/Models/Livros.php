@@ -16,12 +16,14 @@ class Livros extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo', 'image','area', 'sinopse','anopublicacao'
+        'titulo', 'image','area', 'sinopse','anopublicacao', 'produto'
     ];
 
+    protected $primaryKey = 'id';
+    
     public function autores()
     {
-    	return $this->belongsToMany(Autores::class,'id');
+    	return $this->belongsToMany('App\Models\Autores');
     }
 }
 

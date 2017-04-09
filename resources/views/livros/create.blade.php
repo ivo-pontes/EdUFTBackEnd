@@ -5,7 +5,7 @@
   <div class="modal-content" >
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">AREA REGISTRATION</h4>
+          <h4 class="modal-title" id="myModalLabel">BOOKS REGISTRATION</h4>
       </div>
       <div class="modal-body" >
         <div class="row">
@@ -38,7 +38,38 @@
                     @endforeach
                   </select>                              
               </div>
-              
+              <div class="form-group">
+                <label for="descricao">descricao</label>
+                <input type="text" class="form-control" id="descricao" name="descricao">
+              </div>
+              <div class="form-group">
+                  <label for="categoria" class="control-label">Categoria:</label>
+                  <select id="categoria" name="categoria" style="width: 100%; height: 28px;">
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria['id'] }}"> {{ $categoria['descricao'] }} </option>
+                    @endforeach
+                  </select>                              
+              </div> 
+              <div class="form-group">
+                <label for="peso">peso</label>
+                <input type="text" class="form-control" id="peso" name="peso">
+              </div>
+              <div class="form-group">
+                <label for="valor">valor</label>
+                <input type="text" class="form-control" id="valor" name="valor">
+              </div>
+              <div class="form-group">
+                <label for="quantidade">quantidade</label>
+                <input type="text" class="form-control" id="quantidade" name="quantidade">
+              </div>
+              <div class="form-group">
+                  <label for="autor" class="control-label">Autores:</label>
+                  <select multiple="multiple" size="5" id="autor" name="autor[]" style="width: 100%; ">
+                    @foreach($autores as $autor)
+                        <option value="{{ $autor['id'] }}"> {{ $autor['nome'] }} {{ $autor['sobrenome'] }} </option>
+                    @endforeach
+                  </select>                              
+              </div> 
             </div>
             <div class="form-group" style="clear: both; max-width: 95%; margin: 0px auto;">
               @include('layouts/errors')

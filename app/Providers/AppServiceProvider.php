@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Areas as Areas;
-
+use App\Models\Estados as Estados;
+use App\Models\Categorias as Categorias;
+use App\Models\Autores as Autores;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,9 +21,13 @@ class AppServiceProvider extends ServiceProvider
             $view->with('estados', Estados::all());
         });
 
+        //dd(Autores::all());
         view()->composer('livros/create', function($view){
             $view->with('areas', Areas::all());
+            $view->with('categorias', Categorias::all());
+            $view->with('autores', Autores::all());
         });
+
     }
 
     /**

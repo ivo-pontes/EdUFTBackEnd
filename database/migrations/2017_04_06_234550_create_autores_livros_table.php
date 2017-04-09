@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAutorLivroTable extends Migration
+class CreateAutoresLivrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAutorLivroTable extends Migration
      */
     public function up()
     {
-        Schema::create('autor_livro', function (Blueprint $table) {
+        Schema::create('autores_livros', function (Blueprint $table) {
             $table->integer('livro');
             $table->integer('autor');
-            $table->primary(['livro','autor']);
+            $table->primary(['autor', 'livro']);
         });
     }
 
@@ -27,6 +27,6 @@ class CreateAutorLivroTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('autor_livro');
+        Schema::dropIfExists('autores_livros');
     }
 }

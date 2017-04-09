@@ -17,4 +17,10 @@ class Opinioes extends Model
     protected $fillable = [
          'opiniao','qualificacao'
     ];
+
+   public function __construct($opiniao, $qualificacao)
+  {
+    $this->opiniao = $opiniao;
+    $this->qualificacao = $qualificacao;
+  }
 }

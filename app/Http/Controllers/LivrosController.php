@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livros;
+//use App\Models\Livros;
 use Illuminate\Http\Request;
 use App\Repositories\Interfaces\LivrosInterface as LivrosInterface;
 use Illuminate\Support\Facades\Storage as Storage;
@@ -38,7 +38,11 @@ class LivrosController extends Controller
             'titulo' => 'required',
             'sinopse'  => 'required',
             'anodepublicacao'  => 'date',
-            'area' => 'required'
+            'area' => 'required',
+            'descricao' => 'required',
+            'peso'  => 'required|numeric',
+            'valor'  => 'required|numeric',
+            'quantidade'  => 'required|numeric',
             ]);
 
         $path = Storage::putFile('public/images/'.$request->imageFile->hashName(), $request->file('imageFile'));
@@ -49,8 +53,14 @@ class LivrosController extends Controller
         $date = $date->format('Y-m-d H:i:s');
         $request->request->add(['anopublicacao' => $date]);
 
-        $livro = $this->livro->persist(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
-    
+
+        dd($request->autor);
+        //$newLivro =  new Livros(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
+        //$livro = $this->livro->persist(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
+        $livro = $this->livro->persistProduto(request(['titulo', 'sinopse', 'anopublicacao','area', 'image',
+                    'descricao','categoria', 'peso', 'valor', 'quantidade', 'autor']));
+        //dd($livro);
+        
         session()->flash('message', "O Livro: ".$request->titulo." foi cadastrado.");
 
 
