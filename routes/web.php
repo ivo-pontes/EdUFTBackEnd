@@ -59,3 +59,7 @@ Route::post('/categorias/create', 'CategoriasController@store');
 Route::get('/autores/create', 'AutoresController@create');
 
 Route::post('/autores/create', 'AutoresController@store');
+
+
+Route::get('/livros/{livro}', 'LivrosController@show');
+Route::get('/livros', 'LivrosController@index');

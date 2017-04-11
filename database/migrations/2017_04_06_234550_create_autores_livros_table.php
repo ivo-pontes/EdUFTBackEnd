@@ -14,9 +14,9 @@ class CreateAutoresLivrosTable extends Migration
     public function up()
     {
         Schema::create('autores_livros', function (Blueprint $table) {
-            $table->integer('livro');
-            $table->integer('autor');
-            $table->primary(['autor', 'livro']);
+            $table->integer('autores_id');
+            $table->integer('livros_id');
+            $table->primary(['autores_id', 'livros_id']);
         });
     }
 

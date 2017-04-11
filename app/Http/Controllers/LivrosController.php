@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 //use App\Models\Livros;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Repositories\Interfaces\LivrosInterface as LivrosInterface;
 use Illuminate\Support\Facades\Storage as Storage;
+use App\Models\Livros as Livros;
 
 class LivrosController extends Controller
 {
@@ -23,7 +25,11 @@ class LivrosController extends Controller
      */
     public function index()
     {
-        //
+        $livros = Livros::with('autores')->take(10)->get();
+
+        //dd($livros);
+
+        return view('livros/index',compact('livros'));;
     }
 
     public function create()
@@ -45,7 +51,21 @@ class LivrosController extends Controller
             'quantidade'  => 'required|numeric',
             ]);
 
-        $path = Storage::putFile('public/images/'.$request->imageFile->hashName(), $request->file('imageFile'));
+       // $path = Storage::putFile('public/images/'.$request->imageFile->hashName(), $request->file('imageFile'));
+
+       $destination = 'uploads/';
+
+       $image = $request->imageFile;
+
+        // ex: photo-5396e3816cc3d.jpg
+        $filename = Str::lower(
+            pathinfo(str_replace(' ', '_', $image->getClientOriginalName()), PATHINFO_FILENAME)
+            .'-'.uniqid().'.'.$image->getClientOriginalExtension()
+        );
+
+        $image->move($destination, $filename);
+        
+        $path = $destination.$filename;
 
         $request->request->add(['image' => $path]);
 
@@ -53,19 +73,11 @@ class LivrosController extends Controller
         $date = $date->format('Y-m-d H:i:s');
         $request->request->add(['anopublicacao' => $date]);
 
-
-        dd($request->autor);
-        //$newLivro =  new Livros(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
-        //$livro = $this->livro->persist(request(['titulo', 'sinopse', 'anopublicacao','area', 'image']));
         $livro = $this->livro->persistProduto(request(['titulo', 'sinopse', 'anopublicacao','area', 'image',
                     'descricao','categoria', 'peso', 'valor', 'quantidade', 'autor']));
-        //dd($livro);
-        
+
         session()->flash('message', "O Livro: ".$request->titulo." foi cadastrado.");
 
-
-        
-        //Redirecionar
         return redirect()->home();
     }
 
@@ -75,9 +87,12 @@ class LivrosController extends Controller
      * @param  \App\Livros  $livros
      * @return \Illuminate\Http\Response
      */
-    public function show(Livros $livros)
+    public function show(Livros $livro)
     {
-        //
+        //dd($livro);
+        //$livros;
+        //return \Response::json($livro);
+        return view('livros/show',compact('livro'));;
     }
 
     /**
