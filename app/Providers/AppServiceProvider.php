@@ -28,6 +28,12 @@ class AppServiceProvider extends ServiceProvider
             $view->with('autores', Autores::all());
         });
 
+        view()->composer('livros/edit', function($view){
+            $view->with('areas', Areas::all());
+            $view->with('categorias', Categorias::all());
+            $view->with('autores', Autores::all());
+        });
+
     }
 
     /**

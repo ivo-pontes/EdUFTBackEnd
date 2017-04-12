@@ -10,6 +10,7 @@ class Livros extends Model
 {
    use Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,12 +20,20 @@ class Livros extends Model
         'titulo', 'image','area', 'sinopse','anopublicacao', 'produto'
     ];
 
+    
+    
     protected $primaryKey = 'id';
     
     public function autores()
     {
     	return $this->belongsToMany('App\Models\Autores');
     }
+
+    public function produtos()
+    {
+        return $this->hasMany('App\Models\Produtos','id'); // (Model, foreign_key, local_key)
+    }
+
 }
 
 

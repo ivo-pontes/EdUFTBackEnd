@@ -28,34 +28,30 @@
     	@if(count($livros) > 1)
 	   		@foreach($livros as $livro)
 	   			<tr>
-	   				<td><a href="#"><img src="{{ asset($livro->image) }}" alt="" ></a></td>
+	   				<td><a href="/livros/{{ $livro->id  }}"><img src="{{ asset($livro->image) }}" alt="" ></a></td>
 	   				<td>{{ $livro->titulo }}</td>
 	   				<td>{{ $livro->sinopse }} (Autores:
-	   				@if(count($livro->autores) == 1)
-	   					"{{ $autor->nome}} {{ $autor->sobrenome}}"
-	   				@else
-		   				@foreach($livro->autores as $autor)
-						    "{{ $autor->nome}} {{ $autor->sobrenome}}"
-						@endforeach
-					@endif
+	   				@foreach($livro->autores as $autor)
+					    "{{ $autor->nome}} {{ $autor->sobrenome}}"
+					@endforeach
 					)</td>
+					<td> <div class="buttons"><a href="#" ><span class="glyphicon glyphicon-edit"></span></a>
+					<a href="#"><span class="glyphicon glyphicon-remove"></span></a></div></td>
 	   			</tr>
 			@endforeach
 		@elseif(count($livros) <= 0)
 			NOT FOUND
 		@else
    			<tr>
-   				<td><a href="#"><img src="{{ asset($livros->image) }}" alt="" ></a></td>
+   				<td><a href="/livros/{{ $livro->id }}"><img src="{{ asset($livros->image) }}" alt="" ></a></td>
    				<td>{{ $livros->titulo }}</td>
    				<td>{{ $livros->sinopse }} (Autores: 
-   				@if(count($livros->autores) == 1)
-   					"{{ $autor->nome}} {{ $autor->sobrenome}}"
-   				@else
-	   				@foreach($livros->autores as $autor)
-					    "{{ $autor->nome}} {{ $autor->sobrenome}}"
-					@endforeach
-				@endif
+   				@foreach($livros->autores as $autor)
+				    "{{ $autor->nome}} {{ $autor->sobrenome}}"
+				@endforeach
 				)</td>
+				<td> <div class="buttons"><a href="#" ><span class="glyphicon glyphicon-edit"></span></a>
+					<a href="#"><span class="glyphicon glyphicon-remove"></span></a></div></td>
    			</tr>	
 		@endif
 
@@ -82,6 +78,14 @@ img{
 
 .center{
 	text-align: center;
+}
+
+.buttons{
+	padding-top: 30px;
+}
+
+td div a:nth-child(2){
+	padding-top: 50px;
 }
 
 </style>

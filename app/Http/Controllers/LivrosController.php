@@ -51,8 +51,6 @@ class LivrosController extends Controller
             'quantidade'  => 'required|numeric',
             ]);
 
-       // $path = Storage::putFile('public/images/'.$request->imageFile->hashName(), $request->file('imageFile'));
-
        $destination = 'uploads/';
 
        $image = $request->imageFile;
@@ -88,11 +86,11 @@ class LivrosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Livros $livro)
-    {
+    {   
         //dd($livro);
         //$livros;
         //return \Response::json($livro);
-        return view('livros/show',compact('livro'));;
+        return view('livros/show',compact('livro'));
     }
 
     /**
@@ -101,9 +99,23 @@ class LivrosController extends Controller
      * @param  \App\Livros  $livros
      * @return \Illuminate\Http\Response
      */
-    public function edit(Livros $livros)
-    {
-        //
+    public function edit(Livros $livro)
+    {   
+        //$l = Livros::where('id', $livro->id)->with('produto')->get();
+        //$l = $livro->getLivrosData();
+        //$l = $livro::with('produto')->first()->get();
+        //dd($livro->autores);
+        
+        /*foreach ($livro->produtos as $produto) 
+        {
+            echo $produto->titulo;
+        }*/
+
+        //$autores = Livros::where('id', $livro->id)->with('autores')->get();
+        
+        //dd($autores);
+
+        return view('livros/edit',compact('livro'));
     }
 
     /**
@@ -113,7 +125,7 @@ class LivrosController extends Controller
      * @param  \App\Livros  $livros
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Livros $livros)
+    public function update(Request $request, Livros $livro)
     {
         //
     }
@@ -124,8 +136,8 @@ class LivrosController extends Controller
      * @param  \App\Livros  $livros
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Livros $livros)
+    public function destroy(Livros $livro)
     {
-        //
+       
     }
 }

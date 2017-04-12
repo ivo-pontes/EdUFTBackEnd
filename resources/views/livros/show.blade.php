@@ -28,14 +28,12 @@
 		<td><a href="#"><img src="{{ asset($livro->image) }}" alt="" ></a></td>
 		<td>{{ $livro->titulo }}</td>
 		<td>{{ $livro->sinopse }} (Autores: 
-		@if(count($livro->autores) == 1)
-			"{{ $autor->nome}} {{ $autor->sobrenome}}"
-		@else
 			@foreach($livro->autores as $autor)
 		    	"{{ $autor->nome}} {{ $autor->sobrenome}}"
 			@endforeach
-		@endif
 		)</td>
+		<td ><a href="#" class="buttons"><span class="glyphicon glyphicon-edit"></span></a>
+						<a href="#" class="buttons"><span class="glyphicon glyphicon-remove"></span></a></td>
 	</tr>	
     </tbody>
   </table>
@@ -60,6 +58,11 @@ img{
 
 .center{
 	text-align: center;
+}
+
+.buttons{
+	margin-top: .15em;
+	padding-top: .15em;
 }
 
 </style>

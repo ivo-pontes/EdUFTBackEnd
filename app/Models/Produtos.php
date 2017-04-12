@@ -18,8 +18,19 @@ class Produtos extends Model
         'titulo', 'valor', 'peso', 'descricao', 'categoria', 'quantidade','opinioes'
     ];
 
+    protected $primaryKey = 'id';
 
-   public function __construct($produto)
+  public function __construct()
+  {
+
+  }
+
+  public function livro()
+  {
+    return $this->belongsTo('App\Models\Livros','id');
+  }
+
+    public function persist($produto)
   {
     $this->titulo = $produto['titulo'];
     $this->valor = $produto['valor'];
@@ -28,6 +39,8 @@ class Produtos extends Model
     $this->categoria = $produto['categoria'];
     $this->quantidade = $produto['quantidade'];
     $this->opiniao = $produto['opiniao'];
+
+    $this->save();
   }
 
 }

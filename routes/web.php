@@ -63,3 +63,5 @@ Route::post('/autores/create', 'AutoresController@store');
 
 Route::get('/livros/{livro}', 'LivrosController@show');
 Route::get('/livros', 'LivrosController@index');
+
+Route::get('/livros/{livro}/edit', 'LivrosController@edit');
