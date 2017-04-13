@@ -86,7 +86,7 @@
             
             <div class="form-group" style="clear: both; max-width: 95%; margin: 0px auto;">
               @include('layouts/errors')
-              <button type="submit" class="btn btn-success btn-block">Cadastrar!</button>
+              <button type="submit" class="btn btn-success btn-block">Atualizar!</button>
             </div>
           </form>
         </div>

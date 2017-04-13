@@ -4,6 +4,7 @@
           <a class="blog-nav-item active" href="/">Home</a>
           <a class="blog-nav-item" href="/login">Login</a>
           <a class="blog-nav-item" href="/register">Register</a>
+          <a class="blog-nav-item" href="/livros">Livros</a>
           <a class="blog-nav-item" href="/autores/create">Registrar Autor</a>
           <a class="blog-nav-item" href="/livros/create">Registrar Livro</a>
           @if(Auth::check())

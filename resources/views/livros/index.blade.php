@@ -7,13 +7,37 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/css/blog.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
 </head>
 <body>
 
 <div class="container-fluid" >
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
+  <div class="modal fade" id="confirmar" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Confirmar Exclusão</h4>
+        </div>
+        <div class="modal-body">
+          <p id="mensagemModal"> </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal" id="excluir">Excluir</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
   <h2 class="center">Livros</h2>         
   <table class="table table-hover table-condensed"  >
     <thead>
@@ -25,7 +49,7 @@
     </thead>
     <tbody>
     	<?php// dd($livros); ?>
-    	@if(count($livros) > 1)
+
 	   		@foreach($livros as $livro)
 	   			<tr>
 	   				<td><a href="/livros/{{ $livro->id  }}"><img src="{{ asset($livro->image) }}" alt="" ></a></td>
@@ -35,26 +59,14 @@
 					    "{{ $autor->nome}} {{ $autor->sobrenome}}"
 					@endforeach
 					)</td>
-					<td> <div class="buttons"><a href="#" ><span class="glyphicon glyphicon-edit"></span></a>
-					<a href="#"><span class="glyphicon glyphicon-remove"></span></a></div></td>
+					<td> <div class="buttons"><a href="/livros/{{$livro->id}}/edit" ><span class="glyphicon glyphicon-edit"></span></a>
+					<form action="/livros/{{ $livro->id }}" method="POST" id="formExcluir">
+					    <input type="hidden" name="_method" value="DELETE">
+					    {{ csrf_field() }}
+					    <button type="button" name="buttonRemover" id="buttonRemover" data-toggle="modal" data-target="#confirmar" value="{{ $livro->titulo }}"><span class="glyphicon glyphicon-remove"></span></button></td>
+					</form>	
 	   			</tr>
 			@endforeach
-		@elseif(count($livros) <= 0)
-			NOT FOUND
-		@else
-   			<tr>
-   				<td><a href="/livros/{{ $livro->id }}"><img src="{{ asset($livros->image) }}" alt="" ></a></td>
-   				<td>{{ $livros->titulo }}</td>
-   				<td>{{ $livros->sinopse }} (Autores: 
-   				@foreach($livros->autores as $autor)
-				    "{{ $autor->nome}} {{ $autor->sobrenome}}"
-				@endforeach
-				)</td>
-				<td> <div class="buttons"><a href="#" ><span class="glyphicon glyphicon-edit"></span></a>
-					<a href="#"><span class="glyphicon glyphicon-remove"></span></a></div></td>
-   			</tr>	
-		@endif
-
     </tbody>
   </table>
 </div>
@@ -81,13 +93,26 @@ img{
 }
 
 .buttons{
-	padding-top: 30px;
+	padding-top: 40px;
 }
 
-td div a:nth-child(2){
-	padding-top: 50px;
+#buttonRemover {
+	border:none; 
+	background: none;
+	clear: both;
+	padding-left: .06em;
 }
+
+#buttonRemover span {
+	color: #337AB7;
+}
+
+#buttonRemover span:hover {
+	color: #23527C;
+}
+
 
 </style>
+
 </body>
 </html>

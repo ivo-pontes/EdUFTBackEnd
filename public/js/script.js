@@ -24,6 +24,21 @@ function esmaecer()
 function load()
 {
 	setTimeout(esmaecer,3000);
+
+	var buttonRemover = document.getElementById('buttonRemover');
+	
+	buttonRemover.addEventListener('click',function(event){
+		var msgModal = document.getElementById('mensagemModal');
+		msgModal.innerHTML = "Você realmente deseja excluir:<br><strong>" + buttonRemover.value +"</strong>?";
+	},false);
+
+	var buttonExcluir = document.getElementById('excluir');
+
+	buttonExcluir.addEventListener('click',function(){
+		document.getElementById('formExcluir').submit();
+	});
+
+
 	addDateTypeFirefox();
 }
 

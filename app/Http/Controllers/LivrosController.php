@@ -138,6 +138,10 @@ class LivrosController extends Controller
      */
     public function destroy(Livros $livro)
     {
+       session()->flash('message', "O Livro: ".$livro->titulo." foi removido.");
        
+      // $livro->delete();
+       
+       return redirect()->home();
     }
 }

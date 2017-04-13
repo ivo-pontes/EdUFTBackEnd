@@ -65,3 +65,5 @@ Route::get('/livros/{livro}', 'LivrosController@show');
 Route::get('/livros', 'LivrosController@index');
 
 Route::get('/livros/{livro}/edit', 'LivrosController@edit');
+
+Route::delete('/livros/{livro}', 'LivrosController@destroy');
