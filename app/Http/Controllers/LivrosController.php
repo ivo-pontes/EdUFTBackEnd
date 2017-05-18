@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Repositories\Interfaces\LivrosInterface as LivrosInterface;
 use Illuminate\Support\Facades\Storage as Storage;
 use App\Models\Livros as Livros;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LivrosController extends Controller
 {
@@ -27,10 +28,18 @@ class LivrosController extends Controller
     {
         $livros = Livros::with('autores')->take(10)->get();
 
-        //dd($livros);
+        foreach ($livros as $livro) 
+        {
+            $img = Image::make($livro->image)->resize(50,50);
+            $img->encode($img->extension);
+            $type = $img->extension;
+            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
+            $livro->imagem = $base64;
+        }
 
         return view('livros/index',compact('livros'));;
     }
+
 
     public function create()
     {
@@ -87,9 +96,6 @@ class LivrosController extends Controller
      */
     public function show(Livros $livro)
     {   
-        //dd($livro);
-        //$livros;
-        //return \Response::json($livro);
         return view('livros/show',compact('livro'));
     }
 
@@ -101,20 +107,6 @@ class LivrosController extends Controller
      */
     public function edit(Livros $livro)
     {   
-        //$l = Livros::where('id', $livro->id)->with('produto')->get();
-        //$l = $livro->getLivrosData();
-        //$l = $livro::with('produto')->first()->get();
-        //dd($livro->autores);
-        
-        /*foreach ($livro->produtos as $produto) 
-        {
-            echo $produto->titulo;
-        }*/
-
-        //$autores = Livros::where('id', $livro->id)->with('autores')->get();
-        
-        //dd($autores);
-
         return view('livros/edit',compact('livro'));
     }
 
@@ -139,8 +131,6 @@ class LivrosController extends Controller
     public function destroy(Livros $livro)
     {
        session()->flash('message', "O Livro: ".$livro->titulo." foi removido.");
-       
-      // $livro->delete();
        
        return redirect()->home();
     }

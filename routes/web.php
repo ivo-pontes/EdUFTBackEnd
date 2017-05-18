@@ -15,8 +15,29 @@
     return view('welcome');
 });*/
 
-//Auth::routes();
+Route::group(['prefix' => 'api'], function()
+{
+	Route::group(['prefix' => 'livros'], function()
+	{
+		Route::get('','ApiLivrosController@index');		
+		Route::get('{livro}', 'ApiLivrosController@show');
+		Route::post('', 'LivrosController@store');
+		Route::put('{livro}', 'LivrosController@update');
+		Route::delete('{livro}', 'LivrosController@destroy');
+	});
 
+	Route::group(['prefix' => 'autores'], function()
+	{
+		Route::get('','ApiLivrosController@index');		
+		Route::get('{autor}', 'ApiAutoresController@show');
+		Route::post('', 'LivrosController@store');
+		Route::put('{livro}', 'LivrosController@update');
+		Route::delete('{livro}', 'LivrosController@destroy');
+	});
+
+	Route::get('favoritos/{id}/user/{user}','ApiFavoritosController@addFav');
+
+});
 Route::get('/', 'HomeController@index')->name('home');
 
 

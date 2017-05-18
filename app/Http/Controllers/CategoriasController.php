@@ -28,10 +28,7 @@ class CategoriasController extends Controller
 
        
         $categoria = $this->categoria->persist(request(['descricao']));
-    	
-    	//dd($categoria);
-    	
-    	//Redirecionar
+
     	return redirect()->home();
     }
 }

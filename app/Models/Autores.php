@@ -15,11 +15,7 @@ class Autores extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'nome', 'sobrenome', 'descricao'
-    ];
-
-    
+    protected $fillable = [ 'nome', 'sobrenome', 'descricao' ]; 
 
     public function livros()
     {

@@ -33,11 +33,6 @@ class AutoresController extends Controller
     	
     	session()->flash('message', "O Autor: ".$request->nome." ".$request->sobrenome." foi cadastrado.");
     	
-    	//dd(session('message'));
-
-    	//dd($autor);
-    	
-    	//Redirecionar
     	return redirect()->home();
     }
 }

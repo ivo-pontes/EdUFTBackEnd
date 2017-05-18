@@ -28,8 +28,6 @@ class AreasController extends Controller
 
        
         $area = $this->area->persist(request(['descricao']));
-    	
-    	//dd($area);
 
         //\Mail::to($area)->send(new Welcome($area));
 
